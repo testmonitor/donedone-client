@@ -13,8 +13,9 @@ use TestMonitor\DoneDone\Exceptions\UnauthorizedException;
 class Client
 {
     use Actions\ManagesAccounts,
-        Actions\ManagesTasks,
-        Actions\ManagesProjects;
+        Actions\ManagesProjects,
+        Actions\ManagesStatuses,
+        Actions\ManagesTasks;
 
     /**
      * @var string
