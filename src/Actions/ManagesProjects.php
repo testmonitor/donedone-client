@@ -19,6 +19,10 @@ trait ManagesProjects
     {
         $result = $this->get("{$accountId}/internal-projects");
 
+        if ($result === '[]') {
+            return [];
+        }
+
         return array_map(function ($project) {
             return $this->fromDoneDoneProject($project);
         }, $result);
