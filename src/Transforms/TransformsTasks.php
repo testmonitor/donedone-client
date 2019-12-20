@@ -15,8 +15,8 @@ trait TransformsTasks
         return [
             'title' => $task->title,
             'description' => $task->description,
-            'statusID' => $task->status ?? null,
-            'priorityID' => $task->priority ?? null,
+            'statusID' => $task->status,
+            'priorityID' => $task->priority,
             'assigneeID' => $task->assignee ?? null,
         ];
     }

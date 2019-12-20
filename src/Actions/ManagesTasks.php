@@ -58,6 +58,6 @@ trait ManagesTasks
             'json' => $this->toDoneDoneTask($task),
         ]);
 
-        return $this->fromDoneDoneTask($result);
+        return $this->task($result['id'], $accountId, $projectId);
     }
 }
