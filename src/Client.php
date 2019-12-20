@@ -13,6 +13,7 @@ use TestMonitor\DoneDone\Exceptions\UnauthorizedException;
 class Client
 {
     use Actions\ManagesAccounts,
+        Actions\ManagesPriorities,
         Actions\ManagesProjects,
         Actions\ManagesStatuses,
         Actions\ManagesTasks;
