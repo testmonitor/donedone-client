@@ -165,7 +165,7 @@ class TasksTest extends TestCase
 
         $donedone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
+        $service->shouldReceive('request')->twice()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
         $response->shouldReceive('getStatusCode')->andReturn(200);
         $response->shouldReceive('getBody')->andReturn(json_encode($this->task));
 
