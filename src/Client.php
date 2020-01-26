@@ -58,16 +58,16 @@ class Client
     protected function client()
     {
         return $this->client ?? new GuzzleClient([
-                'auth' => [
-                    $this->username,
-                    $this->token,
-                ],
-                'base_uri' => 'https://2.donedone.com/public-api/',
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json; charset=utf-8',
-                ],
-            ]);
+            'auth' => [
+                $this->username,
+                $this->token,
+            ],
+            'base_uri' => 'https://2.donedone.com/public-api/',
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json; charset=utf-8',
+            ],
+        ]);
     }
 
     /**
