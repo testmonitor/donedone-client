@@ -42,12 +42,12 @@
     },
     "autoload": {
         "psr-4": {
-            "TestMonitor\\": "src/"
+            "TestMonitor\\DoneDone\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "TestMonitor\\DoneDone\\Tests\\": "tests/"
         }
     },
     "scripts": {
