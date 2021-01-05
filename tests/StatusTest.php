@@ -48,7 +48,7 @@ class StatusTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(json_encode(['listStatuses' => $this->statuses]));
+        $response->shouldReceive('getBody')->andReturn(json_encode($this->statuses));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 

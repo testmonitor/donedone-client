@@ -48,7 +48,7 @@ class PriorityTest extends TestCase
 
         $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(json_encode(['listPriorities' => $this->priorities]));
+        $response->shouldReceive('getBody')->andReturn(json_encode($this->priorities));
 
         $service->shouldReceive('request')->once()->andReturn($response);
 
