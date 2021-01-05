@@ -18,10 +18,10 @@ trait ManagesPriorities
      */
     public function priorities(int $accountId, int $projectId): array
     {
-        $result = $this->get("{$accountId}/internal-projects/{$projectId}/tasks/filter-options");
+        $result = $this->get("{$accountId}/internal-projects/{$projectId}/priorities");
 
         return array_map(function ($priority) {
             return $this->fromDoneDonePriority($priority);
-        }, $result['listPriorities']);
+        }, $result);
     }
 }

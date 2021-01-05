@@ -18,10 +18,10 @@ trait ManagesStatuses
      */
     public function statuses(int $accountId, int $projectId): array
     {
-        $result = $this->get("{$accountId}/internal-projects/{$projectId}/tasks/filter-options");
+        $result = $this->get("{$accountId}/internal-projects/{$projectId}/statuses");
 
         return array_map(function ($status) {
             return $this->fromDoneDoneStatus($status);
-        }, $result['listStatuses']);
+        }, $result);
     }
 }
