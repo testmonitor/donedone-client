@@ -2,6 +2,7 @@
 
 namespace TestMonitor\DoneDone\Transforms;
 
+use TestMonitor\DoneDone\Validator;
 use TestMonitor\DoneDone\Resources\Task;
 
 trait TransformsTasks
@@ -26,8 +27,11 @@ trait TransformsTasks
      *
      * @return \TestMonitor\DoneDone\Resources\Task
      */
-    protected function fromDoneDoneTask(array $task): Task
+    protected function fromDoneDoneTask($task): Task
     {
+        Validator::isArray($task);
+        Validator::keysExists($task, ['id', 'status', 'priority']);
+
         return new Task([
             'id' => $task['id'],
             'title' => $task['title'] ?? '',
