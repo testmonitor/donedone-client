@@ -9,7 +9,6 @@ trait TransformsProjects
 {
     /**
      * @param array $project
-     *
      * @return \TestMonitor\DoneDone\Resources\Project
      */
     protected function fromDoneDoneProject($project): Project

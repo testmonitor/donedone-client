@@ -13,7 +13,6 @@ trait ManagesPriorities
      *
      * @param int $accountId
      * @param int $projectId
-     *
      * @return \TestMonitor\DoneDone\Resources\Priority[]
      */
     public function priorities(int $accountId, int $projectId): array
