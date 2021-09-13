@@ -5,7 +5,7 @@ jobs:
         working_directory: ~/testmonitor/donedone-client
 
         docker:
-            - image: cimg/php:8.0-node
+            - image: cimg/php:8.0
 
         steps:
             - run:
@@ -24,8 +24,7 @@ jobs:
         working_directory: ~/testmonitor/donedone-client
 
         docker:
-            - image: cimg/php:8.0-node
-
+            - image: cimg/php:8.0
         steps:
             - attach_workspace:
                   at: .
@@ -53,7 +52,7 @@ jobs:
         working_directory: ~/testmonitor/donedone-client
 
         docker:
-            - image: cimg/php:8.0-node
+            - image: cimg/php:8.0
 
         steps:
             - attach_workspace:
