@@ -24,7 +24,6 @@ trait TransformsTasks
 
     /**
      * @param array $task
-     *
      * @return \TestMonitor\DoneDone\Resources\Task
      */
     protected function fromDoneDoneTask($task): Task

@@ -29,7 +29,6 @@ trait ManagesProjects
      *
      * @param int $accountId
      * @param int $id
-     *
      * @return Project
      */
     public function project(int $accountId, int $id): Project

@@ -9,7 +9,6 @@ trait TransformsPriorities
 {
     /**
      * @param array $priority
-     *
      * @return \TestMonitor\DoneDone\Resources\Priority
      */
     protected function fromDoneDonePriority($priority): Priority

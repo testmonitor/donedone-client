@@ -9,7 +9,6 @@ trait TransformsAccounts
 {
     /**
      * @param array $account
-     *
      * @return \TestMonitor\DoneDone\Resources\Account
      */
     protected function fromDoneDoneAccount($account): Account

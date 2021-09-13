@@ -82,12 +82,13 @@ class Client
      * Make a GET request to DoneDone servers and return the response.
      *
      * @param string $uri
-     *
      * @param array $payload
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TestMonitor\DoneDone\Exceptions\FailedActionException
      * @throws \TestMonitor\DoneDone\Exceptions\NotFoundException
      * @throws \TestMonitor\DoneDone\Exceptions\ValidationException
+     *
      * @return mixed
      */
     protected function get($uri, array $payload = [])
@@ -105,6 +106,7 @@ class Client
      * @throws \TestMonitor\DoneDone\Exceptions\FailedActionException
      * @throws \TestMonitor\DoneDone\Exceptions\NotFoundException
      * @throws \TestMonitor\DoneDone\Exceptions\ValidationException
+     *
      * @return mixed
      */
     protected function post($uri, array $payload = [])
@@ -123,6 +125,7 @@ class Client
      * @throws \TestMonitor\DoneDone\Exceptions\FailedActionException
      * @throws \TestMonitor\DoneDone\Exceptions\NotFoundException
      * @throws \TestMonitor\DoneDone\Exceptions\ValidationException
+     *
      * @return mixed
      */
     protected function request($verb, $uri, array $payload = [])
@@ -149,6 +152,7 @@ class Client
      * @throws \TestMonitor\DoneDone\Exceptions\NotFoundException
      * @throws \TestMonitor\DoneDone\Exceptions\FailedActionException
      * @throws \Exception
+     *
      * @return void
      */
     protected function handleRequestError(ResponseInterface $response)

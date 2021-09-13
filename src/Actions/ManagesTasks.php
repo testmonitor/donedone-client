@@ -15,7 +15,6 @@ trait ManagesTasks
      * @param int $accountId
      * @param int $projectId
      * @param int $page
-     *
      * @return Task[]
      */
     public function tasks(int $accountId, int $projectId, int $page = 1): array
@@ -33,7 +32,6 @@ trait ManagesTasks
      * @param int $id
      * @param int $accountId
      * @param int $projectId
-     *
      * @return Task
      */
     public function task(int $id, int $accountId, int $projectId): Task
@@ -49,7 +47,6 @@ trait ManagesTasks
      * @param \TestMonitor\DoneDone\Resources\Task $task
      * @param int $accountId
      * @param int $projectId
-     *
      * @return Task
      */
     public function createTask(Task $task, int $accountId, int $projectId)

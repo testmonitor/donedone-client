@@ -9,7 +9,6 @@ trait TransformsStatuses
 {
     /**
      * @param array $status
-     *
      * @return \TestMonitor\DoneDone\Resources\Status
      */
     protected function fromDoneDoneStatus($status): Status

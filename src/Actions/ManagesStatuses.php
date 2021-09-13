@@ -13,7 +13,6 @@ trait ManagesStatuses
      *
      * @param int $accountId
      * @param int $projectId
-     *
      * @return \TestMonitor\DoneDone\Resources\Status[]
      */
     public function statuses(int $accountId, int $projectId): array
