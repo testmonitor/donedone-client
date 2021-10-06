@@ -62,6 +62,7 @@ class Client
                 $this->username,
                 $this->token,
             ],
+            'http_errors' => false,
             'base_uri' => 'https://2.donedone.com/public-api/',
             'headers' => [
                 'Accept' => 'application/json',
