@@ -145,7 +145,6 @@ class ProjectsTest extends TestCase
         try {
             $doneDone->projects($this->account['id']);
         } catch (ValidationException $exception) {
-
             // Then
             $this->assertIsArray($exception->errors());
             $this->assertEquals('invalid', $exception->errors()['errors'][0]);
