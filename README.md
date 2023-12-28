@@ -2,13 +2,13 @@
 
 [![Latest Stable Version](https://poser.pugx.org/testmonitor/donedone-client/v/stable)](https://packagist.org/packages/testmonitor/donedone-client)
 [![CircleCI](https://img.shields.io/circleci/project/github/testmonitor/donedone-client.svg)](https://circleci.com/gh/testmonitor/donedone-client)
-[![Travis Build](https://travis-ci.com/testmonitor/donedone-client.svg?branch=master)](https://travis-ci.com/testmonitor/donedone-client)
+[![Travis Build](https://travis-ci.com/testmonitor/donedone-client.svg?branch=master)](https://app.travis-ci.com/github/donedone-client)
 [![Code Coverage](https://scrutinizer-ci.com/g/testmonitor/donedone-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/testmonitor/donedone-client/?branch=master)
 [![Code Quality](https://scrutinizer-ci.com/g/testmonitor/donedone-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/testmonitor/donedone-client/?branch=master)
 [![StyleCI](https://styleci.io/repos/223800227/shield)](https://styleci.io/repos/225837714)
 [![License](https://poser.pugx.org/testmonitor/donedone-client/license)](https://packagist.org/packages/testmonitor/donedone-client)
 
-This package provides a very basic, convenient, and unified wrapper for the [DoneDone REST api](https://www.donedone.com/api). 
+This package provides a very basic, convenient, and unified wrapper for the [DoneDone REST api](https://www.donedone.com/api).
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ This package provides a very basic, convenient, and unified wrapper for the [Don
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
-  
+
 ## Installation
 
 To install the client you need to require the package using composer:
@@ -43,7 +43,7 @@ You'll have to instantiate the client using your credentials:
 $donedone = new \TestMonitor\DoneDone\Client('email@server.com', 'API token');
 ```
 
-Next, you can start interacting with DoneDone. 
+Next, you can start interacting with DoneDone.
 
 ## Examples
 
@@ -69,7 +69,7 @@ $task = $donedone->createTask(new \TestMonitor\DoneDone\Resources\Task([
 The package contains integration tests. You can run them using PHPUnit.
 
     $ vendor/bin/phpunit
-    
+
 ## Changelog
 
 Refer to [CHANGELOG](CHANGELOG.md) for more information.
