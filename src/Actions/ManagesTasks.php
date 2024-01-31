@@ -4,6 +4,7 @@ namespace TestMonitor\DoneDone\Actions;
 
 use TestMonitor\DoneDone\Resources\Task;
 use TestMonitor\DoneDone\Transforms\TransformsTasks;
+use TestMonitor\DoneDone\Responses\PaginatedResponse;
 
 trait ManagesTasks
 {
@@ -14,16 +15,26 @@ trait ManagesTasks
      *
      * @param int $accountId
      * @param int $projectId
+     * @param null|string $query
      * @param int $page
-     * @return Task[]
+     * @return \TestMonitor\DoneDone\Responses\PaginatedResponse
      */
-    public function tasks(int $accountId, int $projectId, int $page = 1): array
+    public function tasks(int $accountId, int $projectId, $query = null, int $page = 1): PaginatedResponse
     {
-        $result = $this->get("{$accountId}/internal-projects/{$projectId}/tasks", ['page' => $page]);
+        $result = $this->get("{$accountId}/tasks/all", [
+            'query' => [
+                'internal_project_ids' => $projectId,
+                'search_term' => $query,
+                'page' => $page,
+            ],
+        ]);
 
-        return array_map(function ($task) {
-            return $this->fromDoneDoneTask($task);
-        }, $result['listTasks']);
+        return new PaginatedResponse(
+            array_map(fn ($task) => $this->fromDoneDoneTask($task), $result['listTasks']) ?? [],
+            $result['totalTaskCount'],
+            $result['itemsPerPage'],
+            $result['page'],
+        );
     }
 
     /**
