@@ -15,11 +15,11 @@ trait ManagesTasks
      *
      * @param int $accountId
      * @param int $projectId
-     * @param null|string $query
+     * @param string $query
      * @param int $page
      * @return \TestMonitor\DoneDone\Responses\PaginatedResponse
      */
-    public function tasks(int $accountId, int $projectId, $query = null, int $page = 1): PaginatedResponse
+    public function tasks(int $accountId, int $projectId, $query = '', int $page = 1): PaginatedResponse
     {
         $result = $this->get("{$accountId}/tasks/all", [
             'query' => [
@@ -30,10 +30,10 @@ trait ManagesTasks
         ]);
 
         return new PaginatedResponse(
-            array_map(fn ($task) => $this->fromDoneDoneTask($task), $result['listTasks']) ?? [],
-            $result['totalTaskCount'],
-            $result['itemsPerPage'],
-            $result['page'],
+            items: array_map(fn ($task) => $this->fromDoneDoneTask($task), $result['listTasks']) ?? [],
+            total: $result['totalTaskCount'],
+            perPage: $result['itemsPerPage'],
+            currentPage: $result['page'],
         );
     }
 
