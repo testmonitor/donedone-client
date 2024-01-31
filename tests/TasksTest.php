@@ -3,9 +3,11 @@
 namespace TestMonitor\DoneDone\Tests;
 
 use Mockery;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use TestMonitor\DoneDone\Client;
 use TestMonitor\DoneDone\Resources\Task;
+use TestMonitor\DoneDone\Responses\PaginatedResponse;
 use TestMonitor\DoneDone\Exceptions\NotFoundException;
 use TestMonitor\DoneDone\Exceptions\ValidationException;
 use TestMonitor\DoneDone\Exceptions\FailedActionException;
@@ -49,20 +51,28 @@ class TasksTest extends TestCase
 
         $donedone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $response = Mockery::mock('Psr\Http\Message\ResponseInterface');
-        $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(['listTasks' => [$this->task]])));
-
-        $service->shouldReceive('request')->once()->andReturn($response);
+        $service->shouldReceive('request')
+            ->once()
+            ->andReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode([
+                'listTasks' => [$this->task],
+                'totalTaskCount' => 1,
+                'itemsPerPage' => 50,
+                'page' => 1,
+            ])));
 
         // When
         $tasks = $donedone->tasks($this->account['id'], $this->project['id']);
 
         // Then
-        $this->assertIsArray($tasks);
-        $this->assertCount(1, $tasks);
-        $this->assertInstanceOf(Task::class, $tasks[0]);
-        $this->assertEquals($this->task['id'], $tasks[0]->id);
+        $this->assertInstanceOf(PaginatedResponse::class, $tasks);
+        $this->assertIsArray($tasks->items());
+        $this->assertCount(1, $tasks->items());
+        $this->assertEquals(50, $tasks->perPage());
+        $this->assertEquals(1, $tasks->currentPage());
+        $this->assertEquals(1, $tasks->total());
+        $this->assertInstanceOf(Task::class, $tasks->items()[0]);
+        $this->assertEquals($this->task['id'], $tasks->items()[0]->id);
+        $this->assertIsArray($tasks->items()[0]->toArray());
     }
 
     /** @test */
@@ -73,9 +83,9 @@ class TasksTest extends TestCase
 
         $donedone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
-        $response->shouldReceive('getStatusCode')->andReturn(400);
-        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor());
+        $service->shouldReceive('request')
+            ->once()
+            ->andReturn(new Response(400, ['Content-Type' => 'application/json'], null));
 
         $this->expectException(FailedActionException::class);
 
@@ -91,9 +101,9 @@ class TasksTest extends TestCase
 
         $donedone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
-        $response->shouldReceive('getStatusCode')->andReturn(404);
-        $response->shouldReceive('getBody')->andReturnNull();
+        $service->shouldReceive('request')
+            ->once()
+            ->andReturn(new Response(404, ['Content-Type' => 'application/json'], null));
 
         $this->expectException(NotFoundException::class);
 
@@ -109,9 +119,9 @@ class TasksTest extends TestCase
 
         $donedone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
-        $response->shouldReceive('getStatusCode')->andReturn(401);
-        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor());
+        $service->shouldReceive('request')
+            ->once()
+            ->andReturn(new Response(401, ['Content-Type' => 'application/json'], null));
 
         $this->expectException(UnauthorizedException::class);
 
@@ -127,9 +137,9 @@ class TasksTest extends TestCase
 
         $donedone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
-        $response->shouldReceive('getStatusCode')->andReturn(422);
-        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode(['message' => 'invalid'])));
+        $service->shouldReceive('request')
+            ->once()
+            ->andReturn(new Response(422, ['Content-Type' => 'application/json'], json_encode(['message' => 'invalid'])));
 
         $this->expectException(ValidationException::class);
 
@@ -145,12 +155,12 @@ class TasksTest extends TestCase
 
         $donedone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
-        $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode($this->task)));
+        $service->shouldReceive('request')
+            ->once()
+            ->andReturn(new Response(200, ['Content-Type' => 'application/json'], json_encode($this->task)));
 
         // When
-        $task = $donedone->task($this->account['id'], $this->project['id'], $this->task['id']);
+        $task = $donedone->task($this->task['id'], $this->account['id'], $this->project['id']);
 
         // Then
         $this->assertInstanceOf(Task::class, $task);
@@ -165,9 +175,9 @@ class TasksTest extends TestCase
 
         $donedone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $service->shouldReceive('request')->twice()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
-        $response->shouldReceive('getStatusCode')->andReturn(200);
-        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor(json_encode($this->task)));
+        $service->shouldReceive('request')
+            ->twice()
+            ->andReturn(new Response(201, ['Content-Type' => 'application/json'], json_encode($this->task)));
 
         // When
         $task = $donedone->createTask(
