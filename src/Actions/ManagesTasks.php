@@ -19,7 +19,7 @@ trait ManagesTasks
      * @param int $page
      * @return \TestMonitor\DoneDone\Responses\PaginatedResponse
      */
-    public function tasks(int $accountId, int $projectId, $query = '', int $page = 1): PaginatedResponse
+    public function tasks(int $accountId, int $projectId, string $query = '', int $page = 1): PaginatedResponse
     {
         $result = $this->get("{$accountId}/tasks/all", [
             'query' => [
