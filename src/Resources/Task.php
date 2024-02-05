@@ -5,14 +5,14 @@ namespace TestMonitor\DoneDone\Resources;
 class Task extends Resource
 {
     /**
-     * The id of the issue.
+     * The id of the task.
      *
      * @var string
      */
     public $id;
 
     /**
-     * The reference number of the issue.
+     * The reference number of the task.
      *
      * @var string
      */
