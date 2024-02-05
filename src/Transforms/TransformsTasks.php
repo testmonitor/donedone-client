@@ -29,10 +29,11 @@ trait TransformsTasks
     protected function fromDoneDoneTask($task): Task
     {
         Validator::isArray($task);
-        Validator::keysExists($task, ['id', 'status', 'priority']);
+        Validator::keysExists($task, ['id', 'refNumber', 'status', 'priority']);
 
         return new Task([
             'id' => $task['id'],
+            'refNumber' => $task['refNumber'],
             'title' => $task['title'] ?? '',
             'description' => $task['description'] ?? '',
 

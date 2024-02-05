@@ -12,6 +12,13 @@ class Task extends Resource
     public $id;
 
     /**
+     * The reference number of the issue.
+     *
+     * @var string
+     */
+    public $refNumber;
+
+    /**
      * The title of the task.
      *
      * @var string
@@ -54,6 +61,7 @@ class Task extends Resource
     public function __construct(array $attributes)
     {
         $this->id = $attributes['id'] ?? null;
+        $this->refNumber = $attributes['refNumber'] ?? null;
         $this->title = $attributes['title'];
         $this->description = $attributes['description'];
         $this->status = $attributes['status'];
