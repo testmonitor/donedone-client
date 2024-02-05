@@ -31,6 +31,7 @@ class TasksTest extends TestCase
 
         $this->task = [
             'id' => '1',
+            'refNumber' => '101',
             'title' => 'Summary',
             'description' => 'Description',
             'status' => ['id' => '1', 'name' => 'Open'],

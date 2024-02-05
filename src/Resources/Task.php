@@ -5,11 +5,18 @@ namespace TestMonitor\DoneDone\Resources;
 class Task extends Resource
 {
     /**
-     * The id of the issue.
+     * The id of the task.
      *
      * @var string
      */
     public $id;
+
+    /**
+     * The reference number of the task.
+     *
+     * @var string
+     */
+    public $refNumber;
 
     /**
      * The title of the task.
@@ -54,6 +61,7 @@ class Task extends Resource
     public function __construct(array $attributes)
     {
         $this->id = $attributes['id'] ?? null;
+        $this->refNumber = $attributes['refNumber'] ?? null;
         $this->title = $attributes['title'];
         $this->description = $attributes['description'];
         $this->status = $attributes['status'];
