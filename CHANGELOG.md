@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0] - 2024-04-10
+### Added
+- PHP 8.2 support
+- Pagination support
+- Managing tasks
+
+### Updated
+- Added refNumber to the transformer
+
 ## [2.0.0] - 2021-11-08
 ### Added
 - Drop PHP7 support
@@ -25,4 +34,3 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0] - 2020-01-26
 ### Added
 - Initial version.
-
