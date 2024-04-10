@@ -8,10 +8,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - PHP 8.2 support
 - Pagination support
-- Managing tasks
 
 ### Updated
 - Added refNumber to the transformer
+- Managing tasks
+- Query tasks with pagination
+
+### Removed
+- PHP 8.0 support
 
 ## [2.0.0] - 2021-11-08
 ### Added
