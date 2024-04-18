@@ -166,7 +166,7 @@ class Client
             throw new NotFoundException();
         }
 
-        if ($response->getStatusCode() == 401 || $response->getStatusCode() == 403) {
+        if (in_array($response->getStatusCode(), [401, 402, 403])) {
             throw new UnauthorizedException((string) $response->getBody());
         }
 
