@@ -3,7 +3,6 @@
 namespace TestMonitor\DoneDone\Tests;
 
 use Mockery;
-use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use TestMonitor\DoneDone\Client;
 use TestMonitor\DoneDone\Resources\Priority;
@@ -89,9 +88,9 @@ class PriorityTest extends TestCase
 
         $donedone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $service->shouldReceive('request')
-            ->once()
-            ->andReturn(new Response(404, ['Content-Type' => 'application/json'], null));
+        $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
+        $response->shouldReceive('getStatusCode')->andReturn(404);
+        $response->shouldReceive('getBody')->andReturn(\GuzzleHttp\Psr7\Utils::streamFor());
 
         $this->expectException(NotFoundException::class);
 
