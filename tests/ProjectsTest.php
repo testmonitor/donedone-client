@@ -3,6 +3,7 @@
 namespace TestMonitor\DoneDone\Tests;
 
 use Mockery;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use TestMonitor\DoneDone\Client;
 use TestMonitor\DoneDone\Resources\Project;
@@ -83,9 +84,9 @@ class ProjectsTest extends TestCase
 
         $doneDone->setClient($service = Mockery::mock('\GuzzleHttp\Client'));
 
-        $service->shouldReceive('request')->once()->andReturn($response = Mockery::mock('Psr\Http\Message\ResponseInterface'));
-        $response->shouldReceive('getStatusCode')->andReturn(404);
-        $response->shouldReceive('getBody')->andReturnNull();
+        $service->shouldReceive('request')
+            ->once()
+            ->andReturn(new Response(404, ['Content-Type' => 'application/json'], null));
 
         $this->expectException(NotFoundException::class);
 
