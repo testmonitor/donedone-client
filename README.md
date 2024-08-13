@@ -2,10 +2,8 @@
 
 [![Latest Stable Version](https://poser.pugx.org/testmonitor/donedone-client/v/stable)](https://packagist.org/packages/testmonitor/donedone-client)
 [![CircleCI](https://img.shields.io/circleci/project/github/testmonitor/donedone-client.svg)](https://circleci.com/gh/testmonitor/donedone-client)
-[![Travis Build](https://travis-ci.com/testmonitor/donedone-client.svg?branch=master)](https://app.travis-ci.com/github/donedone-client)
-[![Code Coverage](https://scrutinizer-ci.com/g/testmonitor/donedone-client/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/testmonitor/donedone-client/?branch=master)
-[![Code Quality](https://scrutinizer-ci.com/g/testmonitor/donedone-client/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/testmonitor/donedone-client/?branch=master)
 [![StyleCI](https://styleci.io/repos/223800227/shield)](https://styleci.io/repos/225837714)
+[![codecov](https://codecov.io/gh/testmonitor/donedone-client/graph/badge.svg?token=86DQPB0421)](https://codecov.io/gh/testmonitor/donedone-client)
 [![License](https://poser.pugx.org/testmonitor/donedone-client/license)](https://packagist.org/packages/testmonitor/donedone-client)
 
 This package provides a very basic, convenient, and unified wrapper for the [DoneDone REST api](https://www.donedone.com/api).
