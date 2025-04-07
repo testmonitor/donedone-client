@@ -12,3 +12,5 @@ phpunit.xml
 /logs
 
 /.idea
+
+src/Test.php
