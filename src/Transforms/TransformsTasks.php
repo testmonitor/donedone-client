@@ -35,11 +35,11 @@ trait TransformsTasks
             'id' => $task['id'],
             'refNumber' => $task['refNumber'],
             'title' => $task['title'] ?? '',
-            'description' => $task['description'] ?? '',
+            'description' => $task['text'] ?? '',
 
             'status' => ['id' => $task['status']['id'], 'name' => $task['status']['name']],
             'priority' => ['id' => $task['priority']['id'], 'name' => $task['priority']['name']],
-            'assignee' => ['id' => $task['assignee']['id'] ?? null, 'name' => $task['assignee']['name'] ?? null],
+            'assignee' => ['id' => $task['assignedTo']['id'] ?? null, 'name' => $task['assignedTo']['name'] ?? null],
         ]);
     }
 }

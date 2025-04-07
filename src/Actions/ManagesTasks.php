@@ -21,7 +21,7 @@ trait ManagesTasks
      */
     public function tasks(int $accountId, int $projectId, string $query = '', int $page = 1): PaginatedResponse
     {
-        $result = $this->get("{$accountId}/tasks/all", [
+        $result = $this->get("{$accountId}/tasks/search", [
             'query' => [
                 'internal_project_ids' => $projectId,
                 'search_term' => $query,
